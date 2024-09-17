@@ -80,17 +80,13 @@ for i in sentences:
 
 
 tokenized_texts = []
-### YOUR CODE HERE
 for i in sentences_with_special_tokens:
   tokenized_texts.append(tokenizer.tokenize(i))
-### END CODE
 
 
 input_ids = []
-### YOUR CODE HERE
 for i in tokenized_texts:
     input_ids.append(tokenizer.convert_tokens_to_ids(i))
-### END CODE
 
 max_len = 0
 len_index = 0
@@ -106,7 +102,7 @@ print(tokenized_texts[len_index])
 
 
 input_ids = pad_sequences(input_ids,
-                          maxlen=128, ### YOUR CODE HERE
+                          maxlen=128,
                           dtype="long",
                           truncating="post",
                           padding="post")
@@ -116,7 +112,6 @@ print(input_ids[len_index])
 
 attention_masks = []
 
-###YOUR CODE HERE###
 mask=[float(i>0) for i in input_ids[0]]
 
 for j in input_ids:
@@ -124,7 +119,6 @@ for j in input_ids:
   attention_masks.append(mask)
 print(attention_masks[len_index])
 
-###END CODE ###
 
 
 
@@ -170,7 +164,7 @@ torch.cuda.get_device_name(0)
 
 
 optimizer = AdamW(model.parameters(),
-                  lr = 2e-5, ### YOUR CODE HERE
+                  lr = 2e-5,
                   eps = 1e-8
                 )
 epochs = 4
